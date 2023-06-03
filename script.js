@@ -1,35 +1,31 @@
-function rot13(encodedString) {
-  // Create an array to store the decoded characters
-  const decodedArray = [];
+// Your Script here.
 
-  // Loop through each character in the encoded string
-  for (let i = 0; i < encodedString.length; i++) {
-    const char = encodedString[i];
+const lookup = {
+  'A': 'N','B': 'O','C': 'P','D': 'Q',
+  'E': 'R','F': 'S','G': 'T','H': 'U',
+  'I': 'V','J': 'W','K': 'X','L': 'Y',
+  'M': 'Z','N': 'A','O': 'B','P': 'C',
+  'Q': 'D','R': 'E','S': 'F','T': 'G',
+  'U': 'H','V': 'I','W': 'J','X': 'K',
+  'Y': 'L','Z': 'M', '?': '?', ',': ','
+};
 
-    // Check if the character is an uppercase letter
-    if (char.match(/[A-Z]/)) {
-      // Get the ASCII code of the character
-      let ascii = encodedString.charCodeAt(i);
+function rot13(encodedStr){
+   let decodedArr = []; // Your Result goes here
+  // Only change code below this line
+	for(let i = 0 ; i < encodedStr.length ; i++) {
+        if(lookup[ encodedStr[i] ] === undefined){
+            decoderArr.push( encodedStr[i] ) ;
+        }   
+        else{ 
+            decoderArr.push(lookup[ encodedStr[i] ]);
+        }
 
-      // Apply the ROT13 shift (add 13 to the ASCII code)
-      ascii += 13;
-
-      // Handle wraparound if the shift goes beyond 'Z'
-      if (ascii > 90) {
-        ascii -= 26;
-      }
-
-      // Convert the ASCII code back to a character
-      const decodedChar = String.fromCharCode(ascii);
-
-      // Add the decoded character to the array
-      decodedArray.push(decodedChar);
-    } else {
-      // Add non-alphabetic characters to the array as is
-      decodedArray.push(char);
-    }
-  }
-
-  // Join the decoded characters into a string and return it
-  return decodedArray.join('');
+  return decodedArr;//return decodedArr
 }
+
+// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
+
+console.log(rot13("SERR YBIR? NPPVBWBO"));
+
+module.exports = rot13;
